@@ -1,0 +1,6 @@
+1.安装GVim
+2.将ctags cscope放到合适路径下,我一般放到ExtTool中,然后将该目录放于$VIM路径下
+3.将VimProj放于 $VIM 路径下
+4.将plugin 放于 $VIM\vimfiles 路径下
+5.将配色方案放于指定文件夹下，字体文件放于系统字体库中
+5.修改用户_vimrc 添加  source	 $VIM\VimProj\vimrc\_vimrc 即Ok
