@@ -1,0 +1,135 @@
+
+set 		nocompatible							"关闭兼容模式
+set 		number									"显示行号
+syntax 		enable									"语法高亮
+						
+set			cindent
+set			autoindent
+
+set			ruler									"总是在vim窗口右下角显示当前光标行列信息
+set 		nowrap 									"不自动换行
+set 		sw=4 									"将shiftwidth设为4
+set 		ts=4 									"将tabstop设为4
+set 		shiftwidth=4 
+set 		softtabstop=4 
+set 		tabstop=4 								"让一个tab等于4个空格
+set 		smartindent   							"set smart indent
+set 		smarttab      							"use tabs at the start of a line, spaces elsewhere
+set 		expandtab
+
+set			sm										"显示括号配对情况
+:filetype on
+
+call pathogen#infect()
+syntax 		on
+set nocp	
+filetype plugin on
+filetype plugin indent on  
+
+
+colorscheme lucius									"配色
+"set background=dark
+"colorscheme solarized
+set guifont=Bitstream_Vera_Sans_Mono:h9:cANSI 		"记住空格用下划线代替哦
+
+set fileencodings=utf-8,cp936,gb2312,gbk,gb18030
+set encoding=utf-8
+set fenc=utf-8
+language message zh_CN.utf-8
+
+"解决菜单乱码
+source $VIMRUNTIME/delmenu.vim    
+source $VIMRUNTIME/menu.vim  
+
+
+
+"加载init脚本
+source $VIM/VimProj/InitCPP.vim
+
+au GUIEnter * simalt ~x 
+
+map <C-F9> :set encoding=utf-8 \| language message zh_CN.utf-8 \| set fenc=utf-8<CR>
+map <C-F8> :set encoding=cp936 \| language message cp936 \| set fenc=cp936<CR>
+
+"设置NerdTree
+map <F4> :NERDTreeMirror<CR>
+map <F4> :NERDTreeToggle<CR>
+map <F2> :Tlist<CR>
+
+
+map <F12> ::echo call(function("CSTAG_cpp"),[])<CR>	"调用初始函数
+
+"taglist 设置
+let	Tlist_Show_One_File=1							"只显示当前文件的tags
+let	Tlist_WinWidth=40								"设置taglist的宽度
+let	Tlist_Exit_OnlyWindow=1							"taglist窗口是最后一个窗口,则推出vim
+let	Tlist_Use_Right_Window=0						"在vim窗口右侧显示taglist窗口
+
+nmap <F3> :TagbarToggle<CR>   						"设置快捷键  
+let g:tagbar_width = 40       						"设置宽度，默认为40  
+autocmd VimEnter * nested :call tagbar#autoopen(1)  "打开vim时自动打开  
+let g:tagbar_left = 1         						"在左侧"  
+"let g:tagbar_right = 1        						"在右侧  
+
+"nredTree 设置
+let NERDChristmasTree=1
+let NERDTreeAutoCenter=1
+let NERDTreeShowBookmarks=1
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+let NERDTreeShowLineNumbers=1
+let NERDTreeWinPos='right'
+let NERDTreeWinSize=31
+
+
+
+  
+
+" OmniCppComplete
+let OmniCpp_NamespaceSearch = 1
+let OmniCpp_GlobalScopeSearch = 1
+let OmniCpp_ShowAccess = 1
+let OmniCpp_ShowPrototypeInAbbr = 1 " 显示函数参数列表
+let OmniCpp_MayCompleteDot = 1   " 输入 .  后自动补全
+let OmniCpp_MayCompleteArrow = 1 " 输入 -> 后自动补全
+let OmniCpp_MayCompleteScope = 1 " 输入 :: 后自动补全
+let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
+let OmniCpp_SelectFirstItem = 0
+" 自动关闭补全窗口
+au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+set completeopt=menuone,menu,longest
+
+
+
+"doxygen setting
+let g:DoxygenToolkit_authorName="KevnQi"
+let g:DoxygenToolkit_briefTag_funcName="yes"
+let g:doxygen_enhanced_color=1
+let g:DoxygenToolkit_blockHeader="----------------------------------------------------------------------" 
+let g:DoxygenToolkit_blockFooter="----------------------------------------------------------------------"
+"let g:DoxygenToolkit_licenseTag="My own license\<enter>Autor: KevinQi\<enter>"
+let g:DoxygenToolkit_undocTag="DOXIGEN_SKIP_BLOCK"
+let g:DoxygenToolkit_briefTag_pre ="@brief:\t"
+let g:DoxygenToolkit_paramTag_pre ="@param:\t"
+let g:DoxygenToolkit_returnTag = "@return\t"
+let g:DoxygenToolkit_maxFunctionProtoLines = 30
+
+" DoxAuthor Dox DoxBlock三个命令的快捷操作
+
+map da : DoxAuthor
+
+map df : Dox
+
+map db : DoxBlock
+
+map dl : DoxLic
+
+map dc O/** */
+
+"MRU 最近操作文件列表 插件配置
+highlight link MRUFileName LineNr
+let MRU_Max_Entries = 1000 			"缓存的最近文件个数
+let MRU_Window_Height = 15 			"窗口高度
+"let MRU_Use_Current_Window = 1 		"用当前窗口
+
+
