@@ -1,0 +1,11 @@
+cd D: 
+D:
+ls
+ll
+ls -l
+scp
+ssh
+exit
+ls
+cd 
+exit
